@@ -1,0 +1,31 @@
+15 12 52 52
+// The first line should contain the width and height of the
+// map and the width and height of each tile. A list of character to
+// tile mappings is then provided where each character is preceded by a
+// # character.
+//The dot character always defaults to a blank space
+//s = solid unbreakable
+//r = redR
+//b = blue
+//y = yellow
+// Note that the referenced files should be in the same directory as the
+// tile map.
+#s=block_solid.png
+#r=block_red.png
+#b=block_blue.png
+#y=block_yellow.png
+#g=block_green.png
+// The actual tile map is preceded by the #map line
+#map
+ggggggggggggggg
+ggggggggggggggg
+yyyyy.....yyyyy
+ysysy..s..ysysy
+bbbbb.....bbbbb
+bbsbbbbbbbbbsbb
+rrrrrrrrrrrrrrr
+rrrrrrrrrrrrrrr
+...............
+...............
+...............
+...............
