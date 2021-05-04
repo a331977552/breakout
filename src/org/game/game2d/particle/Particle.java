@@ -1,6 +1,6 @@
 package org.game.game2d.particle;
 
-import org.game.game2d.Vector2_2942625;
+import org.game.game2d.Vector2;
 
 import java.awt.*;
 
@@ -9,30 +9,30 @@ import java.awt.*;
  * when life drops to 0, it is dead object.
  * reset position , velocity, and life will make it live again.
  */
-public class Particle_2942625 {
+public class Particle {
     public float life;
-    public Vector2_2942625 position;
-    public Vector2_2942625 velocity;
+    public Vector2 position;
+    public Vector2 velocity;
     public Color color;
     public int index;
     public static final int INIT_RADIUS = 20;
     public float radius = INIT_RADIUS;
 
-    public Particle_2942625(float life, Vector2_2942625 position, Vector2_2942625 velocity, Color color) {
+    public Particle(float life, Vector2 position, Vector2 velocity, Color color) {
         this.life = life;
         this.position = position;
         this.velocity = velocity;
         this.color = color;
     }
 
-    public Particle_2942625() {
+    public Particle() {
         this.life = 0.f;
-        this.position = new Vector2_2942625();
-        this.velocity = new Vector2_2942625();
+        this.position = new Vector2();
+        this.velocity = new Vector2();
         this.color = Color.WHITE;
     }
 
-    public Particle_2942625(int index) {
+    public Particle(int index) {
         this.index = index;
     }
 }

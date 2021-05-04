@@ -6,7 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class GlobalUtils_2942625 {
+public class GlobalUtils {
     public static int screenWidth;
     public static int screenHeight;
     /**

@@ -1,7 +1,7 @@
 package org.game.game2d;
 
-import org.game.utils.Env_2942625;
-import org.game.utils.ImageUtil_2942625;
+import org.game.utils.Env;
+import org.game.utils.ImageUtil;
 
 import java.awt.Image;
 import java.awt.*;
@@ -12,14 +12,14 @@ import java.awt.geom.*;
  *
  * @author David Cairns
  */
-public class Sprite_2942625 {
+public class Sprite {
 
     // The current Animation to use for this sprite
-    private Animation_2942625 anim;
+    private Animation anim;
 
     // Position (pixels)
-    private Vector2_2942625 position;
-    private Vector2_2942625 velocity;// Velocity (pixels per millisecond)
+    private Vector2 position;
+    private Vector2 velocity;// Velocity (pixels per millisecond)
 
 
     // Dimensions of the sprite
@@ -45,41 +45,41 @@ public class Sprite_2942625 {
      *
      * @param anim The animation to use for the sprite.
      */
-    public Sprite_2942625(Animation_2942625 anim) {
+    public Sprite(Animation anim) {
         this.anim = anim;
         render = true;
         scale = 1.0f;
         rotation = 0.0f;
-        position = new Vector2_2942625();
-        velocity = new Vector2_2942625();
+        position = new Vector2();
+        velocity = new Vector2();
     }
     /**
      * Creates a new Sprite object with the non-animated img.
      *
      * @param imagePath The animation to use for the sprite.
      */
-    public Sprite_2942625(String  imagePath) {
-        this.anim = new Animation_2942625();
-        this.anim.addFrame(ImageUtil_2942625.loadImage(imagePath), 1000);
+    public Sprite(String  imagePath) {
+        this.anim = new Animation();
+        this.anim.addFrame(ImageUtil.loadImage(imagePath), 1000);
         render = true;
         scale = 1.0f;
         rotation = 0.0f;
-        position = new Vector2_2942625();
-        velocity = new Vector2_2942625();
+        position = new Vector2();
+        velocity = new Vector2();
     }
     /**
      * Creates a new Sprite object with  the sized and non-animated img.
      *
      * @param imagePath The animation to use for the sprite.
      */
-    public Sprite_2942625(String  imagePath, int width, int height) {
-        this.anim = new Animation_2942625();
-        this.anim.addFrame(ImageUtil_2942625.loadImage(imagePath,width, height), 1000);
+    public Sprite(String  imagePath, int width, int height) {
+        this.anim = new Animation();
+        this.anim.addFrame(ImageUtil.loadImage(imagePath,width, height), 1000);
         render = true;
         scale = 1.0f;
         rotation = 0.0f;
-        position = new Vector2_2942625();
-        velocity = new Vector2_2942625();
+        position = new Vector2();
+        velocity = new Vector2();
     }
 
 
@@ -88,7 +88,7 @@ public class Sprite_2942625 {
      *
      * @param a The animation to use for the sprite.
      */
-    public void setAnimation(Animation_2942625 a) {
+    public void setAnimation(Animation a) {
         anim = a;
     }
 
@@ -145,7 +145,7 @@ public class Sprite_2942625 {
      *
      * @return A reference to the current animation
      */
-    public Animation_2942625 getAnimation() {
+    public Animation getAnimation() {
         return anim;
     }
 
@@ -252,12 +252,12 @@ public class Sprite_2942625 {
         return this.velocity.getY();
     }
 
-    public Vector2_2942625 getVelocity() {
+    public Vector2 getVelocity() {
         return this.velocity;
     }
 
 
-    public void setVelocity(Vector2_2942625 velocity) {
+    public void setVelocity(Vector2 velocity) {
         this.velocity = velocity;
     }
 
@@ -298,7 +298,7 @@ public class Sprite_2942625 {
         scale = s;
     }
 
-    public Vector2_2942625 getPosition() {
+    public Vector2 getPosition() {
         return position;
     }
 
@@ -331,7 +331,7 @@ public class Sprite_2942625 {
      * Stops the sprites movement at the current position
      */
     public void stop() {
-        this.velocity = new Vector2_2942625();
+        this.velocity = new Vector2();
     }
 
     /**
@@ -351,7 +351,7 @@ public class Sprite_2942625 {
         float x = this.position.getX();
         float y = this.position.getY();
         g.drawImage(getImage(), (int) x + xoff, (int) y + yoff, null);
-        if (Env_2942625.LOG_LEVEL == Env_2942625.DEBUG) {
+        if (Env.LOG_LEVEL == Env.DEBUG) {
             String msg = String.format("%d, %d", (int) x, (int) y);
             g.setColor(Color.RED);
             g.drawString(msg, x, y);

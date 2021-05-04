@@ -1,15 +1,15 @@
 package org.game.game2d.sound;
 
-import org.game.game2d.sound.filters.AbstractSoundFilter_2942625;
+import org.game.game2d.sound.filters.AbstractSoundFilter;
 
 import java.io.FilterInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class SoundFilterStream_2942625 extends FilterInputStream {
-    private AbstractSoundFilter_2942625 soundFilter;
+public class SoundFilterStream extends FilterInputStream {
+    private AbstractSoundFilter soundFilter;
 
-    public SoundFilterStream_2942625(InputStream in, AbstractSoundFilter_2942625 soundFilter) {
+    public SoundFilterStream(InputStream in, AbstractSoundFilter soundFilter) {
         super(in);
         this.soundFilter = soundFilter;
     }

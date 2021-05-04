@@ -3,7 +3,7 @@ package org.game.utils;
 import javax.swing.*;
 import java.awt.*;
 
-public class ImageUtil_2942625 {
+public class ImageUtil {
 
     public static Image loadImage(String filename){
         return    new ImageIcon(filename).getImage();

@@ -4,7 +4,7 @@ package org.game.game2d.sound.filters;
  * base class for creating different sound filter.
  * filters such as echo, fade filters implement filter method to implement its own filter.
  */
-public abstract class AbstractSoundFilter_2942625 {
+public abstract class AbstractSoundFilter {
 
 
 

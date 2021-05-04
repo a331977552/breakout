@@ -1,6 +1,6 @@
 package org.game.game2d;
 
-import org.game.utils.Env_2942625;
+import org.game.utils.Env;
 
 import javax.swing.ImageIcon;
 import java.awt.*;
@@ -34,14 +34,14 @@ bbbbbbbbbb
 }
  * @author David Cairns
  */
-public class TileMap_2942625
+public class TileMap
 {
 
-	private Tile_2942625[][] tmap;		// The tile map grid, initially null
+	private Tile[][] tmap;		// The tile map grid, initially null
 
 
 	public static final int TILE_GAP = 2;
-	private List<Tile_2942625> tiles;
+	private List<Tile> tiles;
 	private int mapWidth=0;		// The maps width in tiles
 	private int mapHeight=0;	// The maps height in tiles
 	private int tileWidth=0;	// The width of a tile in pixels
@@ -52,7 +52,7 @@ public class TileMap_2942625
 	private Map<String,Image> imagemap = new HashMap<String,Image>();
 	private String mapfile;
 
-	public TileMap_2942625(String folder, String mapfile) {
+	public TileMap(String folder, String mapfile) {
 		this.mapfile = mapfile;
 
 		this.loadMap(folder, mapfile);
@@ -177,7 +177,7 @@ public class TileMap_2942625
 			// Check the map dimensione are at least > 0
 			if ((mapWidth > 0) && (mapHeight > 0))
 			{
-				tmap = new Tile_2942625[mapWidth][mapHeight];
+				tmap = new Tile[mapWidth][mapHeight];
 			}
 			else
 			{
@@ -201,9 +201,9 @@ public class TileMap_2942625
 					for (int col=0; col<mapWidth && col<line.length(); col++)
 					{
 						char tileType = line.charAt(col);
-						Tile_2942625 tile = new Tile_2942625(tileType, col * (tileWidth+ TILE_GAP), row * (tileHeight + TILE_GAP), Tile_2942625.SOLID == tileType);
+						Tile tile = new Tile(tileType, col * (tileWidth+ TILE_GAP), row * (tileHeight + TILE_GAP), Tile.SOLID == tileType);
 						tmap[col][row] = tile;
-						if(Tile_2942625.EMPTY != tileType){
+						if(Tile.EMPTY != tileType){
 							tiles.add(tile);
 						}
 					}
@@ -245,7 +245,7 @@ public class TileMap_2942625
 		}
 		return s.toString();
 	}
-	public List<Tile_2942625> getTiles() {
+	public List<Tile> getTiles() {
 		return Collections.unmodifiableList(tiles);
 	}
 	/**
@@ -258,7 +258,7 @@ public class TileMap_2942625
 	public Image getTileImage(int x, int y)
 	{
 		if (!valid(x,y)) return null;
-		Tile_2942625 t = tmap[x][y];
+		Tile t = tmap[x][y];
 		if (t == null) return null;
 		char ch = t.getCharacter();
 		if (ch == '.') return null; // Blank space
@@ -337,7 +337,7 @@ public class TileMap_2942625
 	 * @param y The y tile coordinate (in tiles, not pixels)
 	 * @return The tile object at position 'x,y'.
 	 */
-	public Tile_2942625 getTile(int x, int y)
+	public Tile getTile(int x, int y)
 	{
 		if (!valid(x,y)) return null;
 		return tmap[x][y];
@@ -369,7 +369,7 @@ public class TileMap_2942625
 				if (xc+tileWidth < 0 || xc >= rect.x + rect.width) continue;
 				if (yc+tileHeight < 0 || yc >= rect.y + rect.height) continue;
 				g.drawImage(img,xc,yc,null);
-				if(Env_2942625.LOG_LEVEL == Env_2942625.DEBUG){
+				if(Env.LOG_LEVEL == Env.DEBUG){
 					String msg = String.format("%s,%s", xc,yc);
 					g.setColor(Color.BLACK);
 					g.drawString(msg, xc,yc+30);

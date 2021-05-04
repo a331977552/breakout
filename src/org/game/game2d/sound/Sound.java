@@ -1,6 +1,6 @@
 package org.game.game2d.sound;
 
-import org.game.game2d.sound.filters.AbstractSoundFilter_2942625;
+import org.game.game2d.sound.filters.AbstractSoundFilter;
 
 import java.io.*;
 import javax.sound.sampled.*;
@@ -8,20 +8,20 @@ import javax.sound.sampled.*;
 /**
  * added loop feature
  */
-public class Sound_2942625 implements Runnable {
+public class Sound implements Runnable {
 
 	private final boolean loop; //added loop feature.
-	private AbstractSoundFilter_2942625 filter;
+	private AbstractSoundFilter filter;
 	String filename;	// The name of the file to play
 	boolean finished;	// A flag showing that the thread has finished
 
-	public Sound_2942625(String fname) {
+	public Sound(String fname) {
 		filename = fname;
 		finished = false;
 		loop = false;
 	}
 
-	public Sound_2942625(String fname, boolean loop, AbstractSoundFilter_2942625 filter) {
+	public Sound(String fname, boolean loop, AbstractSoundFilter filter) {
 		this.filename = fname;
 		this.loop = loop;
 		this.filter = filter;
@@ -45,7 +45,7 @@ public class Sound_2942625 implements Runnable {
 				DataLine.Info info = new DataLine.Info(Clip.class, format);
 				Clip line = (Clip)AudioSystem.getLine(info);
 				if(filter !=null ){
-					SoundFilterStream_2942625 filterStream =new SoundFilterStream_2942625(stream,filter);
+					SoundFilterStream filterStream =new SoundFilterStream(stream,filter);
 					stream = new AudioInputStream(filterStream,format,stream.getFrameLength());
 				}
 				line.open(stream);

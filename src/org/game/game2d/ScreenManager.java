@@ -13,14 +13,14 @@ import javax.swing.JFrame;
     @author David Cairns
 */
 
-public class ScreenManager_2942625 {
+public class ScreenManager {
 
     private GraphicsDevice device;
 
     /**
      *  Creates a new ScreenManager object.
      */
-    public ScreenManager_2942625() {
+    public ScreenManager() {
         GraphicsEnvironment environment =
             GraphicsEnvironment.getLocalGraphicsEnvironment();
         device = environment.getDefaultScreenDevice();

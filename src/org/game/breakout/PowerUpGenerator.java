@@ -1,7 +1,7 @@
 package org.game.breakout;
 
-import org.game.game2d.Sprite_2942625;
-import org.game.utils.GlobalUtils_2942625;
+import org.game.game2d.Sprite;
+import org.game.utils.GlobalUtils;
 
 import java.awt.*;
 import java.util.List;
@@ -11,27 +11,27 @@ import java.util.ArrayList;
  * unfinished feature.
  *
  * */
-public class PowerUpGenerator_2942625 {
+public class PowerUpGenerator {
 
-    private List<PowerUp_2942625> powerUpList =new ArrayList<>();
+    private List<PowerUp> powerUpList =new ArrayList<>();
     String [] typeImages = new String[]{"images/particle.png","images/particle.png","images/particle.png"};
-    private static final PowerUpGenerator_2942625 singleton = new PowerUpGenerator_2942625();
-    private PowerUpGenerator_2942625(){
+    private static final PowerUpGenerator singleton = new PowerUpGenerator();
+    private PowerUpGenerator(){
     }
 
-    public void spawnPowerUp(PowerUp_2942625.Type type, Sprite_2942625 sprite){
+    public void spawnPowerUp(PowerUp.Type type, Sprite sprite){
         int ordinal = type.ordinal();
         String typeImage = typeImages[ordinal];
-        PowerUp_2942625 powerUp = new PowerUp_2942625(typeImage, type, 50, 20);
+        PowerUp powerUp = new PowerUp(typeImage, type, 50, 20);
         powerUp.setPosition(sprite.getX(),sprite.getY());
 
     }
-    public static PowerUpGenerator_2942625 getInstance(){
+    public static PowerUpGenerator getInstance(){
         return singleton;
     }
 
     public void update(long elapse){
-       powerUpList.stream().filter(powerUp -> powerUp.getY()< GlobalUtils_2942625.screenHeight && !powerUp.isActive());
+       powerUpList.stream().filter(powerUp -> powerUp.getY()< GlobalUtils.screenHeight && !powerUp.isActive());
         powerUpList.stream().forEach(powerUp -> powerUp.update(elapse));
     }
 

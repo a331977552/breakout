@@ -1,8 +1,8 @@
 package org.game;
 
-import org.game.breakout.BreakoutGame_2942625;
+import org.game.breakout.BreakoutGame;
 
-public class Main_2942625 {
+public class Main {
     /**
      * The obligatory main method that creates
      * an instance of our class and starts it running
@@ -10,7 +10,7 @@ public class Main_2942625 {
      * @param args The list of parameters this program might use (ignored)
      */
     public static void main(String[] args) {
-        BreakoutGame_2942625 gct = new BreakoutGame_2942625();
+        BreakoutGame gct = new BreakoutGame();
         gct.start(false);
     }
 }

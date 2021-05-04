@@ -11,7 +11,7 @@ package org.game.game2d;
 	
 	@author David Cairns
 */
-public class Velocity_2942625 {
+public class Velocity {
 
 	private	double angle;	// Angle of velocity in radians
 	private double dangle;	// Angle expressed in degrees
@@ -24,7 +24,7 @@ public class Velocity_2942625 {
 		Initialise a default velocity with 0 speed and an
 		angle of 0 degrees.
 	*/
-	public Velocity_2942625()
+	public Velocity()
 	{
 		dx = 0.0f;
 		dy = 0.0f;
@@ -37,7 +37,7 @@ public class Velocity_2942625 {
 		Initialise a default velocity with a speed of 's' and an
 		angle of 'a' degrees.
 	*/
-	public Velocity_2942625(double s, double a)
+	public Velocity(double s, double a)
 	{
 		dx = 0.0f;
 		dy = 0.0f;
@@ -114,7 +114,7 @@ public class Velocity_2942625 {
 		Add the velocity 'v' to this velocity to produce a new
 		angle and direction.
 	*/
-	public void add(Velocity_2942625 v)
+	public void add(Velocity v)
 	{
 		dx += v.dx;
 		dy += v.dy;
@@ -127,7 +127,7 @@ public class Velocity_2942625 {
 		Subtract the velocity 'v' from this velocity to produce a new
 		angle and direction.
 	*/
-	public void subtract(Velocity_2942625 v)
+	public void subtract(Velocity v)
 	{
 		dx -= v.dx;
 		dy -= v.dy;

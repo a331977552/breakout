@@ -1,20 +1,20 @@
 package org.game.game2d;
 
-import org.game.breakout.Ball_2942625;
+import org.game.breakout.Ball;
 
 /**
  * a convenient class for calculate collision between round object and rectangle object.
  */
-public class Collision_2942625 {
+public class Collision {
     public enum Direction {
-        LEFT(new Vector2_2942625(-1.f, 0.f)),
-        UP(new Vector2_2942625(0.f, 1.f)),
-        RIGHT(new Vector2_2942625(1.f, 0.f)),
-        DOWN(new Vector2_2942625(0.f, -1.f));
+        LEFT(new Vector2(-1.f, 0.f)),
+        UP(new Vector2(0.f, 1.f)),
+        RIGHT(new Vector2(1.f, 0.f)),
+        DOWN(new Vector2(0.f, -1.f));
 
-        private final Vector2_2942625 vector2;
+        private final Vector2 vector2;
 
-        Direction(Vector2_2942625 vector2) {
+        Direction(Vector2 vector2) {
             this.vector2 = vector2;
         }
     }
@@ -22,9 +22,9 @@ public class Collision_2942625 {
     public static class CollisionInfo {
         private boolean isCollided;
         Direction direction;
-        private Vector2_2942625 difference;
+        private Vector2 difference;
 
-        public CollisionInfo(boolean isCollided, Direction direction, Vector2_2942625 difference) {
+        public CollisionInfo(boolean isCollided, Direction direction, Vector2 difference) {
             this.isCollided = isCollided;
             this.direction = direction;
             this.difference = difference;
@@ -41,7 +41,7 @@ public class Collision_2942625 {
         }
 
 
-        public Vector2_2942625 getDifference() {
+        public Vector2 getDifference() {
             return difference;
         }
 
@@ -51,14 +51,14 @@ public class Collision_2942625 {
      * calculate vector's direction so that we can determine which direction the ball
      * should bounce back to
      */
-    static Direction calculateCollidingDirection(Vector2_2942625 vector2) {
+    static Direction calculateCollidingDirection(Vector2 vector2) {
         Direction[] mapDirection = new Direction[]{
                 Direction.UP, Direction.RIGHT, Direction.DOWN, Direction.LEFT
         };
         float max = 0.0f;
         int best_match = -1;
 
-        Vector2_2942625 normalized = vector2.normalize();
+        Vector2 normalized = vector2.normalize();
         for (int i = 0; i < 4; i++) {
             //a.dot(b) = |a||b|* cos θ， the smaller the angle , the bigger the result
             float cos_θ = normalized.dot(mapDirection[i].vector2);
@@ -78,11 +78,11 @@ public class Collision_2942625 {
      * @param targetPos target position
      * @return
      */
-    public static CollisionInfo checkCollision(Ball_2942625 ball, int targetHeight, int targetWidth, Vector2_2942625 targetPos) {
+    public static CollisionInfo checkCollision(Ball ball, int targetHeight, int targetWidth, Vector2 targetPos) {
 
         // get center point circle first
-        float centerX = ball.getX() + Ball_2942625.RADIUS;
-        float centerY = ball.getY() + Ball_2942625.RADIUS;
+        float centerX = ball.getX() + Ball.RADIUS;
+        float centerY = ball.getY() + Ball.RADIUS;
         float targetX = targetPos.getX();
         float targetY = targetPos.getY();
         float aabb_halfWidth = targetWidth / 2.f;
@@ -98,10 +98,10 @@ public class Collision_2942625 {
         differenceX = closestX - centerX;
         differenceY = closestY - centerY;
         double sqrt = Math.sqrt(differenceX * differenceX + differenceY * differenceY);
-        boolean isCollied = (sqrt < Ball_2942625.RADIUS);
+        boolean isCollied = (sqrt < Ball.RADIUS);
 
         if (isCollied)
-            return new CollisionInfo(true, calculateCollidingDirection(new Vector2_2942625(differenceX, differenceY)), new Vector2_2942625(differenceX, differenceY));
+            return new CollisionInfo(true, calculateCollidingDirection(new Vector2(differenceX, differenceY)), new Vector2(differenceX, differenceY));
         else
             return CollisionInfo.CollisionFree();
     }

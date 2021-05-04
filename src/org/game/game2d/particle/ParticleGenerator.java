@@ -1,7 +1,7 @@
 package org.game.game2d.particle;
 
-import org.game.game2d.Sprite_2942625;
-import org.game.game2d.Vector2_2942625;
+import org.game.game2d.Sprite;
+import org.game.game2d.Vector2;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -12,34 +12,34 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import static org.game.game2d.particle.Particle_2942625.INIT_RADIUS;
+import static org.game.game2d.particle.Particle.INIT_RADIUS;
 
 /**
  * a particle generator which generates tail effects for the moving ball in this game.
  */
-public class ParticleGenerator_2942625 {
+public class ParticleGenerator {
     private Random random =  new Random();
     public static final int INSTANCES = 100;
     private static final int NEW_PARTICLE_EACH_TIME = 1;
     private int usedIndex = 0;
-    private List<Particle_2942625> particleList = new ArrayList<>();
+    private List<Particle> particleList = new ArrayList<>();
     private BufferedImage image;
 
-    public ParticleGenerator_2942625(String imgPath) {
+    public ParticleGenerator(String imgPath) {
         try {
             image =ImageIO.read(new File(imgPath));
         } catch (IOException e) {
             e.printStackTrace();
         }
         for (int i = 0; i < INSTANCES; i++) {
-            particleList.add(new Particle_2942625(i));
+            particleList.add(new Particle(i));
         }
     }
     public void draw(Graphics2D g){
         Color gColor = g.getColor();
-        for (Particle_2942625 pa:particleList) {
+        for (Particle pa:particleList) {
             if(pa.life > 0.f){
-                Vector2_2942625 position = pa.position;
+                Vector2 position = pa.position;
                 Color color = pa.color;
                 g.setColor(color);
                 g.drawOval((int)position.getX(),(int)position.getY(),(int)pa.radius,(int)pa.radius );
@@ -47,13 +47,13 @@ public class ParticleGenerator_2942625 {
         }
         g.setColor(gColor);
     }
-    public void update(long elapsedTime, Sprite_2942625 origin, Vector2_2942625 offset){
+    public void update(long elapsedTime, Sprite origin, Vector2 offset){
         respawn(origin,offset);
         updateAllParticleStates(elapsedTime);
     }
 
     private void updateAllParticleStates(long elapsedTime) {
-        for (Particle_2942625 pa: particleList) {
+        for (Particle pa: particleList) {
             pa.life -= elapsedTime *0.2f;
             if (pa.life > 0.0f)
             {
@@ -76,9 +76,9 @@ public class ParticleGenerator_2942625 {
      * @param gameObj
      * @param offset
      */
-    private void respawn(Sprite_2942625 gameObj, Vector2_2942625 offset){
+    private void respawn(Sprite gameObj, Vector2 offset){
         for (int i = 0; i < NEW_PARTICLE_EACH_TIME; i++) {
-            Particle_2942625 particle = findLastUsedParticles();
+            Particle particle = findLastUsedParticles();
             float randomPos = ( this.random.nextInt(60) - 30)/10.f-8;
             float randomR =  this.random.nextInt(100) / 100.0f;
             particle.position = gameObj.getPosition().add(randomPos).add(offset).
@@ -95,7 +95,7 @@ public class ParticleGenerator_2942625 {
      * if it doesn't exist, will return the first one.
      @return
      */
-    private Particle_2942625 findLastUsedParticles() {
+    private Particle findLastUsedParticles() {
         for ( int i = usedIndex; i < particleList.size(); i++) {
             if (particleList.get(i).life<= 0.0f){
                 usedIndex = i;

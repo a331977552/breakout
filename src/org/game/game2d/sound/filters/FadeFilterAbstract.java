@@ -1,6 +1,6 @@
 package org.game.game2d.sound.filters;
 
-public class FadeFilterAbstract_2942625 extends AbstractSoundFilter_2942625 {
+public class FadeFilterAbstract extends AbstractSoundFilter {
     @Override
     public void filter(int bytesRead, byte[] samples) {
         float change = 2.0f * (1.0f / (float) bytesRead);

@@ -13,13 +13,13 @@ import javax.swing.*;
  * Core Game class that implements default game loop. Subclasses should
  * implement the draw() method and override the update method.
 */
-public abstract class GameCore_2942625 extends JFrame implements KeyListener {
+public abstract class GameCore extends JFrame implements KeyListener {
 
 	private static final long serialVersionUID = 1L;
 	protected static final int FONT_SIZE = 12;
 
 
-    private GameState_2942625 gameState;
+    private GameState gameState;
     private	long startTime;				// The time the game started
     private long currTime;				// The current time
     private long elapsedTime;			// Elapsed time since previous check
@@ -34,7 +34,7 @@ public abstract class GameCore_2942625 extends JFrame implements KeyListener {
      * Default constructor for GameCore
      *
      */
-    public GameCore_2942625()
+    public GameCore()
     {
         frames = 1;
         startTime = 1;
@@ -42,11 +42,11 @@ public abstract class GameCore_2942625 extends JFrame implements KeyListener {
     }
 
 
-    public GameState_2942625 getGameState() {
+    public GameState getGameState() {
         return gameState;
     }
 
-    public void setGameState(GameState_2942625 gameState) {
+    public void setGameState(GameState gameState) {
         this.gameState = gameState;
     }
 
@@ -54,7 +54,7 @@ public abstract class GameCore_2942625 extends JFrame implements KeyListener {
      * Signals the game loop that it's time to quit 
      * 
      */
-    public void stop() { gameState = GameState_2942625.STOP; }
+    public void stop() { gameState = GameState.STOP; }
 
 
     /** 
@@ -99,7 +99,7 @@ public abstract class GameCore_2942625 extends JFrame implements KeyListener {
     private  class MWindowAdapter extends WindowAdapter {
         @Override
         public void windowClosing(WindowEvent e) {
-            GameCore_2942625.this.onWindowClosing(e);
+            GameCore.this.onWindowClosing(e);
         }
     }
 
@@ -129,7 +129,7 @@ public abstract class GameCore_2942625 extends JFrame implements KeyListener {
         g = (Graphics2D)getGraphics();
         g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                 RenderingHints.VALUE_ANTIALIAS_ON);
-        while (gameState != GameState_2942625.STOP) {
+        while (gameState != GameState.STOP) {
             elapsedTime = System.currentTimeMillis() - currTime;
             currTime += elapsedTime;
             // Call the overridden update method

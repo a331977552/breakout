@@ -1,6 +1,6 @@
 package org.game.game2d;
 
-import org.game.utils.ImageUtil_2942625;
+import org.game.utils.ImageUtil;
 
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -15,7 +15,7 @@ import java.util.ArrayList;
     
     @author David Cairns
 */
-public class Animation_2942625 {
+public class Animation {
 
     private ArrayList<AnimFrame> frames;	// The set of animation frames
     private int currFrameIndex;				// Current frame animation is on
@@ -31,7 +31,7 @@ public class Animation_2942625 {
     /**
      * Creates a new, empty Animation.
      */
-    public Animation_2942625() {
+    public Animation() {
         frames = new ArrayList<AnimFrame>();
         totalDuration = 0;
         looped = false;
@@ -179,7 +179,7 @@ public class Animation_2942625 {
      */
     public void loadAnimationFromSheet(String fileName, int columns, int rows, int frameDuration)
     {
-    	Image sheet = ImageUtil_2942625.loadImage(fileName);
+    	Image sheet = ImageUtil.loadImage(fileName);
     	Image[] images = getImagesFromSheet(sheet, columns, rows);
     	for (int i=0; i<images.length; i++)
     	{
